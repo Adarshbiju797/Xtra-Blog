@@ -47,3 +47,37 @@ function nav_menus(){
         register_nav_menus($locations);
 }
 add_action('init','nav_menus');
+
+
+function register_acf_block_types()
+{
+
+    acf_register_block_type(
+
+        array(
+
+            'name' =>'gallery',
+            'title' => __('Gallery'),
+            'description' => __('A custom gallery block'),
+            'render_template' => 'gallery.php',
+            'icon' => 'editor-paste-text',
+            'keywords' => array('gallery', 'image'),
+        )
+    );
+}
+
+//blockquote block
+
+function mab_register_acf_block_types() {
+    acf_register_block_type( [
+        'name'            => 'blockquote',
+        'title'           => __( 'Blockquote' ),
+        'description'     => __( 'My blockquote block.' ),
+        'render_template' => 'blockquote.php',
+        'icon'            => 'format-quote',
+    ] );
+}
+
+if ( function_exists( 'acf_register_block_type' ) ) {
+    add_action( 'acf/init', 'mab_register_acf_block_types' );
+}
